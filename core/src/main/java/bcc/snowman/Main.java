@@ -170,8 +170,26 @@ public class Main extends ApplicationAdapter {
         shapeRenderer.end();
     }
 
+    private void createDominoSpace(float startX, float endX, float yPos, float spacing){
+        while(startX<endX){
+            addDomino(startX,yPos);
+            startX+=spacing;
+        }
+    }
+
     private void addAllDominos() {
         //add your code here!!
+        createPlatform(WIDTH/2-0.75f,2*HEIGHT/3+0.5f,WIDTH-1.5f,0.2f);
+        createDominoSpace(.6f, 7.5f,2*HEIGHT/3+0.5f+(DOMINO_HEIGHT / 2f), 0.6f);
+        createPlatform(WIDTH/2+0.75f,HEIGHT/3+0.5f,WIDTH-1.5f,0.2f);
+        createDominoSpace(1.6f, 8.5f, HEIGHT/3+0.5f+(DOMINO_HEIGHT / 2f), 0.6f);
+        createPlatform(WIDTH/2,0.25f,WIDTH,0.2f);
+        createDominoSpace(2f, 8f, 0.25f+DOMINO_HEIGHT / 2f, 0.6f);
+
+
+    
+    
+    
     }
 
     // note - creates from center
@@ -203,7 +221,7 @@ public class Main extends ApplicationAdapter {
     private void dominoStart() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(.5f, .5f);
+        bodyDef.position.set(.5f, 5.5f);
         bodyDef.linearVelocity.set(1.5f, 0f);
 
         Body ball = world.createBody(bodyDef);
